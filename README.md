@@ -42,14 +42,11 @@ your_project/
   - **text_splitter.py**: Splits documents into smaller chunks to be processed by the LLM.
   - **ui.py**: Contains the Gradio UI setup, which provides an interface for users to interact with the system.
   - **vector_store.py**: Manages the creation of vector databases using Chroma to store and retrieve document embeddings.
-- **data/**: Contains the files and data inputs for the system.
-  - **files/**: Includes all style guide PDFs used for content generation.
-  - **organic_search.csv**: CSV file with SEO-related data, such as organic search data, used for vector retrieval.
-- **.env**: Contains sensitive information like API keys. This file is not included in version control for security purposes.
+- **files/**: Contains the files (pdfs, csv etc) that are used for RAG
 
 ## Setup Guide
 
-Follow the steps below to clone, set up, and run the project. The setup involves using **Poetry** for dependency management and a virtual environment for isolation.
+Follow the steps below to clone, set up, and run the project. The setup involves using **Poetry** for dependency management and a virtual environment for isolation. Poetry is the standard in modern python dependency management, resolution and handling virtual environments.
 
 ### Step 1: Install Poetry
 
@@ -57,18 +54,12 @@ Poetry is a dependency manager for Python that helps in project management and e
 
 1. **Install Poetry**:
 
-   If Poetry is not installed, follow these instructions:
-
-   - For Unix/macOS:
-     ```bash
-     curl -sSL https://install.python-poetry.org | python3 -
-     ```
-   - For Windows (Powershell):
-     ```powershell
-     (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
-     ```
+   Follow these guidelines to install poetry for your system:
+   - https://python-poetry.org/docs/
+   - Make sure to add Poetry to your PATH variable (just a reminder to not skip this step during installation)
 
 2. **Verify the installation**:
+    Open shell or terminal and run
    ```bash
    poetry --version
    ```
@@ -80,43 +71,58 @@ Poetry is a dependency manager for Python that helps in project management and e
 To get started, clone the project repository:
 
 ```bash
-git clone https://github.com/yourusername/your_project.git
-cd your_project
+git clone https://github.com/hussainzs/dp-seo-engine.git
+cd dp-seo-engine
 ```
 
 ### Step 3: Set Up the Virtual Environment
 
 Poetry automatically manages virtual environments for each project. To create and activate the environment:
 
-1. **Install dependencies**:
+1. **Configure Poetry to create the virtual environment in the project directory**:
+   
+   Before installing dependencies and activating the environment, run the following command to ensure that the virtual environment is created inside your project folder (i.e., in `.venv/`):
+
    ```bash
-   poetry install
+   poetry config virtualenvs.in-project true
    ```
 
-2. **Activate the virtual environment**:
+   This command tells Poetry to always place the virtual environment inside a `.venv/` folder within the project directory. This is optional but helps setting up the interpreter and organizing overall.
+
+2. **Proceed with the installation**:
+
+   After setting the configuration, you can continue with the following commands:
+   
    ```bash
+   poetry install
    poetry shell
    ```
 
-   This will spawn a new shell with the project's virtual environment activated.
+3. **Set the correct Python Interpreter**:
 
-3. **Set Python interpreter (for VS Code users)**:
+    To ensure vs code uses the correct python interpreter, follow these steps:
 
-   - Open VS Code.
-   - Press `Ctrl + Shift + P` and type `Python: Select Interpreter`.
-   - Select the interpreter created by Poetry, which should be located in the `.venv/` directory.
+    - Type and select Python: Select Interpreter.
+    - Paste the path to the virtual environment python interpreter.
+
+    If you are using VS Code, you can also set the interpreter by clicking on the interpreter name in the bottom left corner and selecting the virtual environment created by Poetry.
+
+    If you are unsure where your path is, you can find it by running the following command in the terminal:
+
+    ```bash
+    poetry env info --executable
+    ```
+
 
 ### Step 4: Set Up Environment Variables
 
-You will need to configure environment variables (e.g., API keys). These should be placed in the `.env` file in the project root. For example:
+You will need to configure environment variables (e.g., API key). These should be placed in the `.env` file in the project root. For example:
 
 **`.env`**:
 
 ```bash
 ANTHROPIC_API_KEY=your_api_key_here
 ```
-
-Make sure to replace `your_api_key_here` with your actual API key for the Anthropic model.
 
 ### Step 5: Running the Application
 
