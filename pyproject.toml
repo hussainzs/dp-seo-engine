@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "seo-engine"
+version = "1.0"
+description = "SEO Engine for DP Inc. to provide url slugs, tags and other functionality to improve PageRank for our articles"
+authors = ["Hussain Zaidi <syedhussainzaidi2002@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+langchain = "^0.3.2"
+gradio = "^4.44.1"
+langchain-community = "^0.3.1"
+langchain-nomic = "^0.1.3"
+python-dotenv = "^1.0.1"
+langchain-anthropic = "^0.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

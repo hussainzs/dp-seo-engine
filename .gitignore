@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env
+venv/
+.venv/
+
+# Pytest cache
+.pytest_cache/
+
+# VS Code settings
+.vscode/
+
+# MacOS files
+.DS_Store
+
+# Gradio cache
+gradio/
