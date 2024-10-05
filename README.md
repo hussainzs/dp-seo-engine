@@ -48,14 +48,12 @@ your_project/
 
 Follow the steps below to clone, set up, and run the project. The setup involves using **Poetry** for dependency management and a virtual environment for isolation. Poetry is the standard in modern python dependency management, resolution and handling virtual environments.
 
-### Step 1: Install Poetry
-
-Poetry is a dependency manager for Python that helps in project management and ensures consistency across environments.
+### Step 1: Poetry Installation
 
 1. **Install Poetry**:
 
    Follow these guidelines to install poetry for your system:
-   - https://python-poetry.org/docs/
+   - Go to: https://python-poetry.org/docs/
    - Make sure to add Poetry to your PATH variable (just a reminder to not skip this step during installation)
 
 2. **Verify the installation**:
@@ -79,7 +77,7 @@ cd dp-seo-engine
 
 Poetry automatically manages virtual environments for each project. To create and activate the environment:
 
-1. **Configure Poetry to create the virtual environment in the project directory**:
+1. **Optional: Configure Poetry to create the virtual environment in the project directory**:
    
    Before installing dependencies and activating the environment, run the following command to ensure that the virtual environment is created inside your project folder (i.e., in `.venv/`):
 
@@ -87,9 +85,9 @@ Poetry automatically manages virtual environments for each project. To create an
    poetry config virtualenvs.in-project true
    ```
 
-   This command tells Poetry to always place the virtual environment inside a `.venv/` folder within the project directory. This is optional but helps setting up the interpreter and organizing overall.
+   This command tells Poetry to always place the virtual environment inside a `.venv/` folder _within_ the project directory. This is optional but helps finding interpreter path and managing virtual environments.
 
-2. **Proceed with the installation**:
+2. **Install Dependencies and activate virtual environment**:
 
    After setting the configuration, you can continue with the following commands:
    
@@ -102,12 +100,10 @@ Poetry automatically manages virtual environments for each project. To create an
 
     To ensure vs code uses the correct python interpreter, follow these steps:
 
-    - Type and select Python: Select Interpreter.
-    - Paste the path to the virtual environment python interpreter.
+    - Type and select **Python: Select Interpreter**.
+    - Paste the path to the virtual environment python interpreter (alternatively on vs code, you can click **Find** and browse through your project directory `.venv\Scripts\python` to find the python interpreter).
 
-    If you are using VS Code, you can also set the interpreter by clicking on the interpreter name in the bottom left corner and selecting the virtual environment created by Poetry.
-
-    If you are unsure where your path is, you can find it by running the following command in the terminal:
+    **Find Path**: If you are unsure where your path is, you can find it by running the following command in the terminal:
 
     ```bash
     poetry env info --executable
@@ -116,7 +112,7 @@ Poetry automatically manages virtual environments for each project. To create an
 
 ### Step 4: Set Up Environment Variables
 
-You will need to configure environment variables (e.g., API key). These should be placed in the `.env` file in the project root. For example:
+You will need to configure environment variables (e.g., API key). These should be placed in the `.env` file in the project root. So create a file named `.env` in the project root and add the following line with your API key:
 
 **`.env`**:
 
@@ -143,7 +139,7 @@ To contribute to this project, please follow these steps:
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make your changes**, ensuring they adhere to the coding standards.
+2. **Make your changes**, ensuring they adhere to best practices.
 
 3. **Commit your changes** with a meaningful commit message:
    ```bash
@@ -155,40 +151,29 @@ To contribute to this project, please follow these steps:
    git push origin feature/your-feature-name
    ```
 
-5. **Open a pull request** to merge your changes into the main branch.
+5. **Optional: Best Practice to resolve conflicts**:
+    - Switch to main branch and pull the latest changes (so yoy have the latest main)
+    - Switch back to your branch and merge main into your branch _(allows you to resolve conflicts locally in your own branch, ensuring that the main branch stays clean and conflict-free)_
+    - Resolve any conflicts that happen during this merge
+    - Push any chages you made to your branch.
 
-## Best Practices
+6. **Open a pull request** to publish your changes into the main branch.
 
-- **Follow the project structure** to maintain consistency across the codebase.
-- **Use Poetry** for adding/removing dependencies:
-  - To add a new dependency:
+    1. **Push your branch**: if you haven't already
     ```bash
-    poetry add package_name
+    git push origin your-feature-branch-name
     ```
-  - To remove a dependency:
-    ```bash
-    poetry remove package_name
-    ```
-- **Test your changes** before pushing to the repository.
 
-## Troubleshooting
+    2. **Go to GitHub.com** and open our repository.
 
-If you encounter issues while setting up or running the project:
+    3. **Create the pull request**:
+        - Once you’ve pushed your branch, GitHub usually displays a prompt to open a pull request. Click the **"Compare & pull request"** button.
+        - If you don’t see the prompt, go to the **"Pull requests"** tab in your repository, then click the _"New pull request"_ button.
+        - Ensure `main` is selected as the _base_ branch, and your feature branch as the _compare_ branch.
 
-1. **Virtual Environment Not Activated**:
-   - Ensure you're in the Poetry shell by running:
-     ```bash
-     poetry shell
-     ```
+    4. Add a title and description
 
-2. **Dependencies Not Installed**:
-   - If dependencies are not installed, try:
-     ```bash
-     poetry install
-     ```
-
-3. **API Issues**:
-   - Verify that your `.env` file contains the correct API keys.
+    5. **Submit the pull request** by clicking "Create pull request."
 
 ## Additional Resources
 
