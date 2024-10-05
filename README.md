@@ -1,4 +1,4 @@
-# SEO Optimizer 
+# DP SEO Engine
 RAG based SEO Optimizer that uses best inertnal style guides and SEO optimization rules to generate url slugs, tags and other functionalities for articles written by Daily Pennsylvania Inc.
 
 ## Project Structure
