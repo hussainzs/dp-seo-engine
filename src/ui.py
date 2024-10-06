@@ -8,7 +8,7 @@ def create_ui(chat_fn):
     )
 
     with gr.Blocks(theme=theme) as demo:
-        gr.Markdown("<h1><center>The Daily Pennsylvanian’s SEO Optimizer</center></h1>")
+        gr.Markdown("<h1><center>The Daily Pennsylvanian’s SEO Engine</center></h1>")
         gr.Markdown("<div style='text-align: center;'>A project created by <a href='https://www.linkedin.com/in/jason-saito/'>Jason Saito</a> and <a href='https://www.linkedin.com/in/sean-mckeown-a3a702218/'>Sean McKeown</a></div>")
 
         chatbot = gr.Chatbot()
