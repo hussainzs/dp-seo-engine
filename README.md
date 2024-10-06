@@ -133,6 +133,10 @@ This will launch the Gradio UI, allowing you to interact with the SEO optimizer.
 
 ## Contribution Guidelines
 
+> **1. Add the `.env` file to your `.gitignore` file to avoid sharing your API keys and other sensitive information.**
+>
+> **2. Use type hints and docstrings for your functions.**
+
 To contribute to this project, please follow these steps:
 
 1. **Create a new branch** for your feature:
@@ -144,7 +148,7 @@ To contribute to this project, please follow these steps:
 
 3. **Commit your changes** with a meaningful commit message:
    ```bash
-   git commit -m "Add feature: your-feature-name"
+   git commit -m "description of your changes"
    ```
 
 4. **Push to your branch**:
@@ -153,10 +157,11 @@ To contribute to this project, please follow these steps:
    ```
 
 5. **Optional: Best Practice to resolve conflicts**:
-    - Switch to main branch and pull the latest changes (so yoy have the latest main)
-    - Switch back to your branch and merge main into your branch _(allows you to resolve conflicts locally in your own branch, ensuring that the main branch stays clean and conflict-free)_
+    - Switch to `main` branch and *pull* the latest changes (so you have the latest main)
+    - Switch back to your branch and *merge* `main` into `your branch` _(allows you to resolve conflicts locally in your own branch, ensuring that the main branch stays clean and conflict-free)_
     - Resolve any conflicts that happen during this merge
     - Push any chages you made to your branch.
+    - Then proceed with a pull request as shown below.
 
 6. **Open a pull request** to publish your changes into the main branch.
 
