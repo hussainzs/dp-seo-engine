@@ -118,6 +118,7 @@ You will need to configure environment variables (e.g., API key). These should b
 
 ```bash
 ANTHROPIC_API_KEY=your_api_key_here
+LLM_MODEL_NAME=claude-3-5-sonnet-20240620
 ```
 
 ### Step 5: Running the Application
