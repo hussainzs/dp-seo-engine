@@ -15,12 +15,18 @@ def main():
     api_key = os.getenv('ANTHROPIC_API_KEY')
     model_name = os.getenv('LLM_MODEL_NAME')
 
+    # Validate environment variables
+    if not api_key or not model_name:
+        print("VALIDATION ERROR: Please provide an API key and model name in env file")
+        sys.exit(1)
+
     # Login to nomic vector embedding model
     nomic_login_key = os.getenv('NOMIC_LOGIN_KEY')
     if nomic_login_key:
+        # executes nomic login key command in the terminal
         subprocess.run(['nomic', 'login', nomic_login_key], check=True)
     else:
-        print("VALIDATION ERROR: Nomic login key not found. Please provide a login key to use Nomic vector embeddings")
+        print("VALIDATION ERROR: Nomic login key not found in env file. Please provide a login key to use Nomic vector embeddings")
         sys.exit(1)
 
 

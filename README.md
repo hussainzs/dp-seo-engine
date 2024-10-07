@@ -112,14 +112,16 @@ Poetry automatically manages virtual environments for each project. To create an
 
 ### Step 4: Set Up Environment Variables
 
-You will need to configure environment variables (e.g., API key). These should be placed in the `.env` file in the project root. So create a file named `.env` in the project root and add the following line with your API key:
+You will need to configure environment variables (e.g., API key). These should be placed in the `.env` file in the project root. Copy the `.env.sample` file in the project root and name it `.env` add the values. 
 
-**`.env`**:
+> **Note**: Don't put any of the values in quotes. The `.env` file should look like this:
 
 ```bash
-ANTHROPIC_API_KEY=your_api_key_here
-LLM_MODEL_NAME=claude-3-5-sonnet-20240620
-```
+ANTHROPIC_API_KEY=dummy-key123456
+LLM_MODEL_NAME=claude-opus
+NOMIC_LOGIN_KEY=dummy-key123456
+```   
+
 
 ### Step 5: Running the Application
 
