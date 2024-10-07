@@ -1,5 +1,5 @@
 from data_loader import load_csv, load_url, load_pdf
-from text_splitter import splitter
+from text_splitter import splitter, recursive_splitter
 from vector_store import create_vector_store
 from chain import create_chain
 from ui import create_ui
@@ -28,8 +28,6 @@ def main():
     else:
         print("VALIDATION ERROR: Nomic login key not found in env file. Please provide a login key to use Nomic vector embeddings")
         sys.exit(1)
-
-
 
     # Load data
     csv_data: List[Document] = load_csv("files/organic_search.csv")
@@ -69,9 +67,9 @@ def main():
     docs_list: List[Document] = load_url(urls)
 
     # Split data
-    doc_splits: List[Document] = splitter(csv_data)
-    url_splits: List[Document]  = splitter(docs_list)
-    pdf_splits: List[Document] = splitter(pdfs_list)
+    doc_splits: List[Document] = recursive_splitter(csv_data)
+    url_splits: List[Document] = recursive_splitter(docs_list)
+    pdf_splits: List[Document] = recursive_splitter(pdfs_list)
 
     # Create vector stores
     csv_retriever: VectorStoreRetriever = create_vector_store(doc_splits, "csv_collection")

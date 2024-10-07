@@ -17,9 +17,14 @@ def create_vector_store(documents: List[Document], collection_name: str) -> Vect
         VectorStoreRetriever: A retriever object for querying the vector store.
     """
 
-    vectorstore = Chroma.from_documents(
-        documents=documents,
+    vectorstore = Chroma(
         collection_name=collection_name,
         embedding=NomicEmbeddings(model="nomic-embed-text-v1"),
     )
+    # Maximum batch size otherwise throws error in site-packages\chromadb\api\types.py", line 571, in validate_batch
+    # --> raise ValueError(ValueError: Batch size 1573 exceeds maximum batch size 166)
+    batch_size: int = 166  
+    for i in range(0, len(documents), batch_size):
+        batch_docs: List[Document] = documents[i : i+batch_size] #slice the documents into batches
+        vectorstore.add_documents(batch_docs)
     return vectorstore.as_retriever()
