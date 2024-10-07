@@ -3,8 +3,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from typing import List
 from langchain_core.documents import Document
 
+
 def splitter(data_list: List[Document]) -> List[Document]:
     """
+    # Using this throws error: "Created a chunk of size 3065, which is longer than the specified 2000"
+    # Avoid using this. Use recursive_splitter instead.
+    
     Splits a list of documents into smaller chunks using a character-based text splitter.
     Each chunk has a size of 2000 characters with an overlap of 100 characters.
     Documentation: https://python.langchain.com/docs/how_to/character_text_splitter/

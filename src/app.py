@@ -1,5 +1,5 @@
 from data_loader import load_csv, load_url, load_pdf
-from text_splitter import splitter, recursive_splitter
+from text_splitter import recursive_splitter
 from vector_store import create_vector_store
 from chain import create_chain
 from ui import create_ui
