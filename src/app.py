@@ -89,6 +89,7 @@ def main():
         return chat_history, chat_history, "", "", "", ""
 
     # Create and launch the UI
+    print("Launching UI...")
     demo = create_ui(chat)
     demo.launch(debug=True, share=True)
 

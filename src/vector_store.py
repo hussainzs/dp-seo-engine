@@ -1,4 +1,4 @@
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_nomic import NomicEmbeddings
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_core.documents import Document
@@ -19,8 +19,9 @@ def create_vector_store(documents: List[Document], collection_name: str) -> Vect
 
     vectorstore = Chroma(
         collection_name=collection_name,
-        embedding=NomicEmbeddings(model="nomic-embed-text-v1"),
+        embedding_function=NomicEmbeddings(model="nomic-embed-text-v1"),
     )
+    
     # Maximum batch size otherwise throws error in site-packages\chromadb\api\types.py", line 571, in validate_batch
     # --> raise ValueError(ValueError: Batch size 1573 exceeds maximum batch size 166)
     batch_size: int = 166  
