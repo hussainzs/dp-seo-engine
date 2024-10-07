@@ -3,7 +3,7 @@ from text_splitter import splitter
 from vector_store import create_vector_store
 from chain import create_chain
 from ui import create_ui
-import os
+import os, subprocess, sys
 from dotenv import load_dotenv
 from typing import List
 from langchain_core.documents import Document
@@ -14,6 +14,16 @@ def main():
     load_dotenv()
     api_key = os.getenv('ANTHROPIC_API_KEY')
     model_name = os.getenv('LLM_MODEL_NAME')
+
+    # Login to nomic vector embedding model
+    nomic_login_key = os.getenv('NOMIC_LOGIN_KEY')
+    if nomic_login_key:
+        subprocess.run(['nomic', 'login', nomic_login_key], check=True)
+    else:
+        print("VALIDATION ERROR: Nomic login key not found. Please provide a login key to use Nomic vector embeddings")
+        sys.exit(1)
+
+
 
     # Load data
     csv_data: List[Document] = load_csv("files/organic_search.csv")
