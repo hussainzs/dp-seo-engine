@@ -9,10 +9,10 @@ def create_ui(chat_fn):
 
     with gr.Blocks(theme=theme) as demo:
         gr.Markdown("<h1><center>The Daily Pennsylvanian’s SEO Engine</center></h1>")
-        gr.Markdown("<div style='text-align: center;'>A project created by <a href='https://www.linkedin.com/in/jason-saito/'>Jason Saito</a> and <a href='https://www.linkedin.com/in/sean-mckeown-a3a702218/'>Sean McKeown</a></div>")
+        gr.Markdown("<div style='text-align: center;'>A project created by DP Business Analytics/div>")
 
         chatbot = gr.Chatbot()
-        title = gr.Textbox(placeholder="Insert title here", label="Article Title")
+        title = gr.Textbox(placeholder="Insert article title here", label="Article Title")
         content = gr.Textbox(placeholder="Insert article content here", label="Article Content")
         input_box = gr.Textbox(placeholder="Ask a question!", label="Question")
         dept = gr.Dropdown(["Under the Button", "34th Street", "DP Sports", "DP General"], label="Department", info="Which publication is this article for?", allow_custom_value=True)

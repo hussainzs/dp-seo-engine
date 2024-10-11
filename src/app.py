@@ -82,8 +82,8 @@ def main():
     # Define chat function
     def chat(input_text, dept, title, content, chat_history):
         chat_history = chat_history or []
-        prompt_text = f""" I am a student who writes for this department: {dept} so use the writing guide that is meant for: {dept}
-        The title is: {title}, the content is: {content}. Answer the question based on the contexts {input_text}"""
+        prompt_text = f""" I am a student journalist who writes for this department: {dept} so use the writing guide that is meant for: {dept}.
+        The title of the article that I'm thinking of is: {title}, the content of the article is: {content}. My question is: {input_text}"""
         response = chain.invoke(prompt_text)
         chat_history.append((input_text, response))
         return chat_history, chat_history, "", "", "", ""

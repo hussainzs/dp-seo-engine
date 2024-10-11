@@ -1,16 +1,20 @@
 from langchain_anthropic import ChatAnthropic
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.vectorstores import VectorStoreRetriever
 from prompt import get_prompt
 
-def create_chain(csv_retriever, url_retriever, pdf_retriever, api_key, model_name):
+def create_chain(csv_retriever: VectorStoreRetriever, 
+                 url_retriever: VectorStoreRetriever, 
+                 pdf_retriever: VectorStoreRetriever, 
+                 api_key: str, model_name: str):
     """
     Creates a langchain chain that retrieves data from 3 sources and passes them as context for RAG along with prompt.
 
     Args:
-        csv_retriever (object): retrieve data from CSV files.
-        url_retriever (object): retrieve data from URLs.
-        pdf_retriever (object): retrieve data from PDF files.
+        csv_retriever (VectorStoreRetriever): retrieve relevant data from CSV files.
+        url_retriever (VectorStoreRetriever): retrieve relevant data from URLs.
+        pdf_retriever (VectorStoreRetriever): retrieve relevant data from PDF files.
         api_key (str): The API key for the ChatAnthropic model.
         model_name (str): The name of LLM model
 
