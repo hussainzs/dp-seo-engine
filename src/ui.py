@@ -9,7 +9,7 @@ def create_ui(chat_fn):
 
     with gr.Blocks(theme=theme, title="DP SEO Optimizer") as demo:
         gr.Markdown("<h1><center>The Daily Pennsylvanian SEO Optimizer</center></h1>")
-        gr.Markdown("<div style='text-align: center;'>A project created by DP Business Analytics/div>")
+        gr.Markdown("<div style='text-align: center;'>A project created by DP Business Analytics</div>")
 
         chatbot = gr.Chatbot()
         title = gr.Textbox(placeholder="Insert article title here", label="Article Title")
