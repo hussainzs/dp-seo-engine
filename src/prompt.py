@@ -38,7 +38,7 @@ def get_prompt() -> ChatPromptTemplate:
     -> reasons for the suggested title: [reasons] (if editor entered title doesn't need improvement say that instead and don't provide another title)
     ---
     Answer to the question: 
-    [answer]
+    [answer] (answer anything other than the title and URL slug here)
     -> reasons for the answer: [reasons] (if the answer requires specific information from the context but that information is missing then point that out)
 
     Question by the editor: {question}.
