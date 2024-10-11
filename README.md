@@ -52,7 +52,7 @@ Follow the steps below to clone, set up, and run the project. The setup involves
 
 1. **Install Poetry**:
 
-   Follow these guidelines to install poetry for your system:
+   Follow these guidelines to install poetry for your system (if you don't have it installed already):
    - Go to: https://python-poetry.org/docs/
    - Make sure to add Poetry to your PATH variable (just a reminder to not skip this step during installation)
 
@@ -66,7 +66,7 @@ Follow the steps below to clone, set up, and run the project. The setup involves
 
 ### Step 2: Clone the Repository
 
-To get started, clone the project repository:
+To get started, open an empty folder in vs-code and clone the project repository:
 
 ```bash
 git clone https://github.com/hussainzs/dp-seo-engine.git
@@ -95,6 +95,9 @@ Poetry automatically manages virtual environments for each project. To create an
    poetry install
    poetry shell
    ```
+   > poetry install will install all the dependencies in the `pyproject.toml` file and create a virtual environment in the `.venv` folder.
+
+   > Poetry shell will activate the virtual environment.
 
 3. **Set the correct Python Interpreter**:
 
@@ -118,7 +121,7 @@ You will need to configure environment variables (e.g., API key). These should b
 
 ```bash
 ANTHROPIC_API_KEY=dummy-key123456
-LLM_MODEL_NAME=claude-opus
+LLM_MODEL_NAME=dummy-model123456
 NOMIC_LOGIN_KEY=dummy-key123456
 ```   
 
@@ -128,18 +131,18 @@ NOMIC_LOGIN_KEY=dummy-key123456
 Once everything is set up, you can run the application as follows:
 
 ```bash
-python src/app.py
+poetry run python src\app.py
 ```
 
 This will launch the Gradio UI, allowing you to interact with the SEO optimizer.
 
 ## Contribution Guidelines
 
-> **1. Add the `.env` file to your `.gitignore` file to avoid sharing your API keys and other sensitive information.**
+> **1. Add `.env` to your `.gitignore` file to avoid sharing your API keys and other sensitive information.**
 >
-> **2. Use type hints and docstrings for your functions.**
+> **2. Please use type hints and docstrings for your functions.**
 
-To contribute to this project, please follow these steps:
+To contribute any changes, please follow these steps:
 
 1. **Create a new branch** for your feature:
    ```bash

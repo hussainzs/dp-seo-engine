@@ -8,9 +8,11 @@ from dotenv import load_dotenv
 from typing import List
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
+import time
 
 def main():
     # Load environment variables
+    print("Loading environment variables...")
     load_dotenv()
     api_key = os.getenv('ANTHROPIC_API_KEY')
     model_name = os.getenv('LLM_MODEL_NAME')
@@ -30,6 +32,7 @@ def main():
         sys.exit(1)
 
     # Load data
+    print("Loading data from csv, pdf, urls...")
     csv_data: List[Document] = load_csv("files/organic_search.csv")
     pdf_list: List[str] = [
         'files/34_Style.pdf',
@@ -67,14 +70,17 @@ def main():
     docs_list: List[Document] = load_url(urls)
 
     # Split data
+    print("Splitting data using recursive splitter...")
     doc_splits: List[Document] = recursive_splitter(csv_data)
     url_splits: List[Document] = recursive_splitter(docs_list)
     pdf_splits: List[Document] = recursive_splitter(pdfs_list)
 
     # Create vector stores
+    print("Storing data in vector stores...")
     csv_retriever: VectorStoreRetriever = create_vector_store(doc_splits, "csv_collection")
     url_retriever: VectorStoreRetriever = create_vector_store(url_splits, "url_collection")
     pdf_retriever: VectorStoreRetriever = create_vector_store(pdf_splits, "pdf_collection")
+    print("Data stored in vector stores ✅")
 
     # Create chain
     chain = create_chain(csv_retriever, url_retriever, pdf_retriever, api_key, model_name)
