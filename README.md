@@ -26,7 +26,7 @@ your_project/
 │   ├── DEI_Style.pdf
 │   ├── Sports_Style.pdf
 │   ├── organic_search.csv
-├── .env                      # Environment variables (API keys, etc.)
+├── .env.sample               # Environment variables (API keys, etc.)
 ```
 
 ### File Descriptions
