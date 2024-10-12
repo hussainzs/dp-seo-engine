@@ -1,5 +1,5 @@
 from data_loader import load_csv, load_url, load_pdf
-from text_splitter import recursive_splitter
+from text_splitter import recursive_splitter, txt_to_documents
 from vector_store import create_vector_store
 from chain import create_chain
 from ui import create_ui
@@ -73,12 +73,14 @@ def main():
     doc_splits: List[Document] = recursive_splitter(csv_data)
     url_splits: List[Document] = recursive_splitter(docs_list)
     pdf_splits: List[Document] = recursive_splitter(pdfs_list)
+    tag_splits: List[Document] = txt_to_documents('dp-seo-engine/files/tags.txt')
 
     # Create vector stores
     print("Storing data in vector stores...")
     csv_retriever: VectorStoreRetriever = create_vector_store(doc_splits, "csv_collection")
     url_retriever: VectorStoreRetriever = create_vector_store(url_splits, "url_collection")
     pdf_retriever: VectorStoreRetriever = create_vector_store(pdf_splits, "pdf_collection")
+    tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection")
     print("Data stored in vector stores ✅")
 
     # Create chain
