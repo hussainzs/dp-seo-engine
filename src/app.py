@@ -24,8 +24,12 @@ def main():
     # Login to nomic vector embedding model
     nomic_login_key = os.getenv('NOMIC_LOGIN_KEY')
     if nomic_login_key:
-        # executes nomic login key command in the terminal
-        subprocess.run(['nomic', 'login', nomic_login_key], check=True)
+        try:
+            # executes nomic login key command in the terminal
+            subprocess.run(['nomic', 'login', nomic_login_key], check=True)
+        except subprocess.CalledProcessError:
+            print("VALIDATION ERROR: Nomic login key is invalid. Please provide a valid login key to use Nomic vector embeddings")
+            sys.exit(1)
     else:
         print("VALIDATION ERROR: Nomic login key not found in env file. Please provide a login key to use Nomic vector embeddings")
         sys.exit(1)
