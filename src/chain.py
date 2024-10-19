@@ -22,12 +22,17 @@ def create_chain(csv_retriever: VectorStoreRetriever,
     Returns:
         chain (object): Langchain chain that combines the data retrieval and processing steps. 
     """
-    def print_retrieved_tags(query):
+    def print_retrieved_tags(query: str):
         retrieved_docs = tag_retriever.get_relevant_documents(query)
+        print("**************************************************************************************")
+        print("")
         print("Retrieved tags:")
         for doc in retrieved_docs:
             print(f"- {doc.page_content}")
+        print("")
+        print("**************************************************************************************")
         return retrieved_docs
+    
     model_remote = ChatAnthropic(api_key=api_key, model_name=model_name)
     chain = (
         {

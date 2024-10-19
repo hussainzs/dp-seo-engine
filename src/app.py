@@ -78,7 +78,10 @@ def main():
     url_splits: List[Document] = recursive_splitter(docs_list)
     pdf_splits: List[Document] = recursive_splitter(pdfs_list)
     tag_splits: List[Document] = txt_to_documents('files/final_tags.txt')
-    print(f"Doc_split length: {len(doc_splits)}\nurl_split length: {len(url_splits)}\npdf_splits length: {len(pdf_splits)}\n tag_split length: {len(tag_splits)}")
+
+    print("\n**********************************************************************************")
+    print(f"Doc_split length: {len(doc_splits)}\nurl_split length: {len(url_splits)}\npdf_splits length: {len(pdf_splits)}\ntag_split length: {len(tag_splits)}")
+    print("**********************************************************************************")
 
     # Create vector stores
     print("Storing data in vector stores...")
