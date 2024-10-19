@@ -20,12 +20,7 @@ your_project/
 │   ├── text_splitter.py      # Splits long documents into smaller chunks
 │   ├── ui.py                 # Contains the Gradio UI logic for interaction
 │   └── vector_store.py       # Handles vector storage and retrieval using Chroma
-├── files/
-│   ├── 34_Style.pdf
-│   ├── All_Style.pdf
-│   ├── DEI_Style.pdf
-│   ├── Sports_Style.pdf
-│   ├── organic_search.csv
+├── files/                    # Data for RAG
 ├── .env.sample               # Environment variables (API keys, etc.)
 ```
 
