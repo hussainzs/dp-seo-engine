@@ -7,6 +7,7 @@ from prompt import get_prompt
 def create_chain(csv_retriever: VectorStoreRetriever, 
                  url_retriever: VectorStoreRetriever, 
                  pdf_retriever: VectorStoreRetriever, 
+                 tag_retriever: VectorStoreRetriever,
                  api_key: str, model_name: str):
     """
     Creates a langchain chain that retrieves data from 3 sources and passes them as context for RAG along with prompt.
@@ -21,12 +22,19 @@ def create_chain(csv_retriever: VectorStoreRetriever,
     Returns:
         chain (object): Langchain chain that combines the data retrieval and processing steps. 
     """
+    def print_retrieved_tags(query):
+        retrieved_docs = tag_retriever.get_relevant_documents(query)
+        print("Retrieved tags:")
+        for doc in retrieved_docs:
+            print(f"- {doc.page_content}")
+        return retrieved_docs
     model_remote = ChatAnthropic(api_key=api_key, model_name=model_name)
     chain = (
         {
             "context": csv_retriever,
             "context1": url_retriever,
             "context2": pdf_retriever,
+            "context3": RunnablePassthrough() | (lambda x: print_retrieved_tags(x)),  # Retrieve and print tags
             "question": RunnablePassthrough()
         }
         | get_prompt()

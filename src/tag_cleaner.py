@@ -155,8 +155,10 @@ def process_tags() -> None:
 
     # Step 2: Remove duplicates by converting the list to a set
     unique_tags = set(tag.strip() for tag in tags)
+    # Step 3: Get rid of useless tags containing "penn"
+    unique_tags = {tag for tag in unique_tags if 'penn' not in tag.lower()}
 
-    # Step 3: Write the unique tags to the new file
+    # Step 4: Write the unique tags to the new file
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     with open(output_file_path, 'w', encoding='utf-8') as file:
         for tag in unique_tags:

@@ -73,19 +73,20 @@ def main():
     doc_splits: List[Document] = recursive_splitter(csv_data)
     url_splits: List[Document] = recursive_splitter(docs_list)
     pdf_splits: List[Document] = recursive_splitter(pdfs_list)
-    tag_splits: List[Document] = txt_to_documents('dp-seo-engine/files/tags.txt')
+    tag_splits: List[Document] = txt_to_documents('files/final_tags.txt')
+    print(f"Doc_split length: {len(doc_splits)}\nurl_split length: {len(url_splits)}\npdf_splits length: {len(pdf_splits)}\n tag_split length: {len(tag_splits)}")
 
     # Create vector stores
     print("Storing data in vector stores...")
     csv_retriever: VectorStoreRetriever = create_vector_store(doc_splits, "csv_collection")
     url_retriever: VectorStoreRetriever = create_vector_store(url_splits, "url_collection")
     pdf_retriever: VectorStoreRetriever = create_vector_store(pdf_splits, "pdf_collection")
-    tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection")
+    tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection", 10)
     print("Data stored in vector stores ✅")
 
     # Create chain
-    chain = create_chain(csv_retriever, url_retriever, pdf_retriever, api_key, model_name)
-
+    chain = create_chain(csv_retriever, url_retriever, pdf_retriever, tag_retriever, api_key, model_name)
+    
     # Define chat function
     def chat(input_text, dept, title, content, chat_history):
         chat_history = chat_history or []
