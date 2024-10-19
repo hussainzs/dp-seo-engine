@@ -40,3 +40,15 @@ def recursive_splitter(data_list: List[Document]) -> List[Document]:
         chunk_size=2000, chunk_overlap=100
     )
     return text_splitter.split_documents(data_list)
+
+def txt_to_documents(file_path: str) -> List[Document]:
+    documents = []
+    
+    with open(file_path, 'r') as file:
+        for line in file:
+            tag = line.strip()
+            if tag:
+                doc = Document(page_content=tag, metadata={"tag": tag})
+                documents.append(doc)   
+
+    return documents

@@ -22,6 +22,9 @@ def get_prompt() -> ChatPromptTemplate:
     
     3. The Daily Pennsylvanian writing style guide and tips can be found through: 
     {context2}
+
+    4. Previously-used tags for the Daily Pennsylvanian's articles can be found through:
+    {context3}
     
     Keep these points in mind when answering the editor's question:
     1. Ensure that all of the titles and URL slugs follow the writing style guides provided.
@@ -36,6 +39,9 @@ def get_prompt() -> ChatPromptTemplate:
     ---
     Suggested TITLE: [title]
     -> reasons for the suggested title: [reasons] (if editor entered title doesn't need improvement say that instead and don't provide another title)
+    ---
+    Suggested TAGS: [tags]
+    -> reasons for the suggested tags: [reasons] (propose anywhere between 1 to 10 possible tags as you see fit. You can generate new tags, the previously-used tags are just for inspiration and context)
     ---
     Answer to the question: 
     [answer] (answer anything other than the title and URL slug here)
