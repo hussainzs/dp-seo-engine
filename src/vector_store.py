@@ -37,9 +37,9 @@ def create_vector_store(documents: List[Document], collection_name: str, k_pre: 
     
     # Create retrieval with optional k param, k determines how many documents are retrieved
     if k_pre is not None:
-        retriever = vectorstore.as_retriever(search_kwargs={"k": k_pre})
+        retriever : VectorStoreRetriever = vectorstore.as_retriever(search_kwargs={"k": k_pre})
     else:
-        retriever = vectorstore.as_retriever()
+        retriever : VectorStoreRetriever = vectorstore.as_retriever()
     
     if k_post:
         compressor = CohereRerank(
@@ -48,7 +48,7 @@ def create_vector_store(documents: List[Document], collection_name: str, k_pre: 
             model='rerank-english-v3.0'
         )
         # ContextualCompressionRetriever is a wrapper around retriever that allows for post-processing
-        retriever = ContextualCompressionRetriever(
+        retriever : VectorStoreRetriever = ContextualCompressionRetriever(
             base_compressor=compressor,
             base_retriever=retriever
         )
