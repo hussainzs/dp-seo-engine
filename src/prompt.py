@@ -33,12 +33,12 @@ def get_prompt() -> ChatPromptTemplate:
     4. If editor asks for suggestions or improvements, specifically mention DP Style Guide or SEO tip or Journalistic Practice used to make the suggestion.
     
     Your response should be structured as follows (follow this structure no matter what the editor asks):
+    Title Comments: [comments]
+    -> comments for the inputted title: [comments] (if editor entered title doesn't need improvement say that instead and don't provide another title, otherwise provide comments based on SEO and style guides and maybe suggestions changes)
+    ---
     URL SLUG:
     [slug]
     -> reasons for the suggested URL slug: [reasons] (briefly reference the context or best practice used to make this suggestion)
-    ---
-    Suggested TITLE: [title]
-    -> reasons for the suggested title: [reasons] (if editor entered title doesn't need improvement say that instead and don't provide another title)
     ---
     Suggested TAGS: [tags]
     -> reasons for the suggested tags: [reasons] (propose anywhere between 1 to 10 possible tags as you see fit. You can generate new tags, the previously-used tags are just for inspiration and context)

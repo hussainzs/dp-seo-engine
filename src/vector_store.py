@@ -2,9 +2,13 @@ from langchain_chroma import Chroma
 from langchain_nomic import NomicEmbeddings
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_core.documents import Document
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import CohereRerank
 from typing import List, Optional
+import os
 
-def create_vector_store(documents: List[Document], collection_name: str, k: Optional[int] = None) -> VectorStoreRetriever:
+
+def create_vector_store(documents: List[Document], collection_name: str, k_pre: Optional[int] = None, k_post: Optional[int] = None) -> VectorStoreRetriever:
     """
     Creates a vector store from a list of documents and returns a retriever for querying the store.
     Documentation for Chroma: https://python.langchain.com/docs/integrations/vectorstores/chroma/
@@ -12,6 +16,8 @@ def create_vector_store(documents: List[Document], collection_name: str, k: Opti
     Args:
         documents (List[Document]): A list of documents to be stored in the vector store.
         collection_name (str): The name of the collection to be created in the vector store.
+        k_pre (Optional[int]): The number of documents that the vector store should retrieve before any post-processing.
+        k_pre (bool): The number of documents that should be left after any post-processing.
 
     Returns:
         VectorStoreRetriever: A retriever object for querying the vector store.
@@ -30,7 +36,21 @@ def create_vector_store(documents: List[Document], collection_name: str, k: Opti
         vectorstore.add_documents(batch_docs)
     
     # Create retrieval with optional k param, k determines how many documents are retrieved
-    if k is not None:
-        return vectorstore.as_retriever(search_type="mmr", search_kwargs={"k": k, "fetch_k": k*2})
+    if k_pre is not None:
+        retriever : VectorStoreRetriever = vectorstore.as_retriever(search_kwargs={"k": k_pre})
     else:
-        return vectorstore.as_retriever()
+        retriever : VectorStoreRetriever = vectorstore.as_retriever()
+    
+    if k_post:
+        compressor = CohereRerank(
+            cohere_api_key=os.getenv('COHERE_API_KEY'),
+            top_n=k_post if k_post is not None else 5,  # Default to getting top 5 reranked results
+            model='rerank-english-v3.0'
+        )
+        # ContextualCompressionRetriever is a wrapper around retriever that allows for post-processing
+        retriever : VectorStoreRetriever = ContextualCompressionRetriever(
+            base_compressor=compressor,
+            base_retriever=retriever
+        )
+
+    return retriever

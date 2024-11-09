@@ -88,7 +88,7 @@ def main():
     csv_retriever: VectorStoreRetriever = create_vector_store(doc_splits, "csv_collection")
     url_retriever: VectorStoreRetriever = create_vector_store(url_splits, "url_collection")
     pdf_retriever: VectorStoreRetriever = create_vector_store(pdf_splits, "pdf_collection")
-    tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection", 10)
+    tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection")
     print("Data stored in vector stores ✅")
 
     # Create chain
