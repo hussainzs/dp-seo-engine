@@ -11,6 +11,7 @@ your_project/
 ├── README.md
 ├── .gitignore                # Excludes unnecessary files from version control
 ├── pyproject.toml            # Poetry project configuration
+├── files/                    # Data for RAG
 ├── src/                      # All source code is located here
 │   ├── __init__.py           # Marks the directory as a Python package
 │   ├── app.py                # Main application ENTRY POINT (run this)
@@ -20,7 +21,6 @@ your_project/
 │   ├── text_splitter.py      # Splits long documents into smaller chunks
 │   ├── ui.py                 # Contains the Gradio UI logic for interaction
 │   └── vector_store.py       # Handles vector storage and retrieval using Chroma
-├── files/                    # Data for RAG
 ├── .env.sample               # Environment variables (API keys, etc.)
 ```
 
