@@ -15,6 +15,7 @@ def main():
     load_dotenv()
     api_key = os.getenv('ANTHROPIC_API_KEY')
     model_name = os.getenv('LLM_MODEL_NAME')
+    print(f"The port will be: {os.getenv('PORT')}")
 
     # Validate environment variables
     if not api_key or not model_name:
@@ -106,7 +107,7 @@ def main():
     # Create and launch the UI
     print("Launching UI...")
     demo = create_ui(chat)
-    demo.launch(server_name="0.0.0.0", server_port=7860, debug=True, share=True)
+    demo.launch(server_name="0.0.0.0", server_port=os.getenv('PORT'), debug=True, share=True)
 
 if __name__ == "__main__":
     main()
