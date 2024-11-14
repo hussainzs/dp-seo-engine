@@ -4,6 +4,8 @@
 
 This project uses **Retrieval-Augmented Generation (RAG)** with **LLMs** to provide SEO guidance to the editorial team by combining internal style guides with advanced SEO techniques. The system takes in PDFs, CSV data, and external web documents, processes them, and offers suggestions for optimizing SEO performance.
 
+Access at: https://young-doretta-dailypennsylvania-bc287685.koyeb.app/
+
 ## Project Structure
 
 ```bash
