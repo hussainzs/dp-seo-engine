@@ -107,7 +107,7 @@ def main():
     # Create and launch the UI
     print("Launching UI...")
     demo = create_ui(chat)
-    demo.launch(server_name="0.0.0.0", server_port=os.getenv('PORT'), debug=True, share=True)
+    demo.launch(server_name="0.0.0.0", server_port=int(os.getenv('PORT')), debug=True, share=True)
 
 if __name__ == "__main__":
     main()
