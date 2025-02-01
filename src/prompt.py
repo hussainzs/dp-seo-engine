@@ -1,4 +1,4 @@
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 def get_prompt() -> ChatPromptTemplate:
     """
@@ -47,8 +47,13 @@ def get_prompt() -> ChatPromptTemplate:
     [answer] (answer anything other than the title and URL slug here)
     -> reasons for the answer: [reasons] (if the answer requires specific information from the context but that information is missing then point that out)
 
-    Question by the editor: {question}.
-
 
     """
-    return ChatPromptTemplate.from_template(template)
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", template),
+        MessagesPlaceholder(variable_name="history"),
+        ("human", "{question}"),
+    ])
+
+    return prompt

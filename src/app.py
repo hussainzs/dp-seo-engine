@@ -91,16 +91,29 @@ def main():
     tag_retriever: VectorStoreRetriever = create_vector_store(tag_splits, "tag_collection")
     print("Data stored in vector stores ✅")
 
+    # Dict to store chat history, can later add functionality to store chat history in a database
+    history_store = {}
+
     # Create chain
-    chain = create_chain(csv_retriever, url_retriever, pdf_retriever, tag_retriever, api_key, model_name)
+    chain = create_chain(csv_retriever, url_retriever, pdf_retriever, tag_retriever, api_key, model_name, history_store)
     
     # Define chat function
     def chat(input_text, dept, title, content, chat_history):
         chat_history = chat_history or []
         prompt_text = f""" I am a student journalist who writes for this department: {dept} so use the writing guide that is meant for: {dept}.
         The title of the article that I'm thinking of is: {title}, the content of the article is: {content}. My question is: {input_text}"""
-        response = chain.invoke(prompt_text)
-        chat_history.append((input_text, response))
+        
+        # Get response from chain
+        response = chain.invoke(
+            {"question": prompt_text},
+            config={"configurable": {"session_id": "session_123"}}
+        )
+        
+        # Extract the content from the ChatMessage object
+        response_content = response.content if hasattr(response, 'content') else str(response)
+        
+        # Update chat history with properly formatted messages
+        chat_history.append((input_text, response_content))
         return chat_history, chat_history, "", "", "", ""
 
     # Create and launch the UI
