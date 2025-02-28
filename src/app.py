@@ -9,6 +9,9 @@ from typing import List
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
 
+# render user agent
+os.environ['USER_AGENT'] = 'dp-seo-engine/1.0'
+
 def main():
     # Load environment variables
     print("Loading environment variables...")
