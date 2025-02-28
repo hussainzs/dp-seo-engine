@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: dp-seo-engine
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python src/app.py
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: LLM_MODEL_NAME
+        sync: false
+      - key: NOMIC_LOGIN_KEY
+        sync: false 
