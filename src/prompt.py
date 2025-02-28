@@ -32,7 +32,8 @@ def get_prompt() -> ChatPromptTemplate:
     3. Important: Mention specific short references from the context that helped you answer each part of the question. Keep these very short and to the point. i.e. any specific points used from style guides or SEO tips.
     4. If editor asks for suggestions or improvements, specifically mention DP Style Guide or SEO tip or Journalistic Practice used to make the suggestion.
     
-    Your response should be structured as follows (follow this structure no matter what the editor asks):
+    For your first response, your response should be structured as below (follow this structure no matter what the editor asks). If this is not your first response, then
+    only follow the structure as you see fit. If they are asking just a follow-up question you do not need to follow it.:
     Title Comments: [comments]
     -> comments for the inputted title: [comments] (if editor entered title doesn't need improvement say that instead and don't provide another title, otherwise provide comments based on SEO and style guides and maybe suggestions changes)
     ---

@@ -30,7 +30,7 @@ def create_chain(csv_retriever: VectorStoreRetriever,
         # Get the question and history from the input
         question = input_dict["question"]
         chat_history = input_dict.get("history", [])
-        print(input_dict)
+        print(input_dict['history'])
         
         # Get relevant documents from each retriever
         csv_docs = csv_retriever.get_relevant_documents(question)
@@ -45,14 +45,37 @@ def create_chain(csv_retriever: VectorStoreRetriever,
             print(f"- {doc.page_content}")
         print("\n**************************************************************************************")
         
-        return {
+        # Clean up history to only show content
+        cleaned_history = []
+        for message in chat_history:
+            if hasattr(message, 'content'):
+                # Determine if it's a human or AI message
+                speaker = "Human" if message.type == "human" else "Assistant"
+                cleaned_history.append(f"{speaker}: {message.content}")
+        
+        # Add debug prints for template inputs
+        result = {
             "context": "\n".join(doc.page_content for doc in csv_docs),
             "context1": "\n".join(doc.page_content for doc in url_docs),
             "context2": "\n".join(doc.page_content for doc in pdf_docs),
             "context3": "\n".join(doc.page_content for doc in tag_docs),
             "question": question,
-            "history": chat_history
+            "history": cleaned_history
         }
+        
+        # print("\n=== TEMPLATE INPUTS ===")
+        # print(f"Question: {result['question']}")
+        # print("Chat History:")
+        # for msg in cleaned_history:
+        #     print(f"- {msg}")
+        # print("Context Lengths:")
+        # print(f"CSV context: {len(result['context'])} chars")
+        # print(f"URL context: {len(result['context1'])} chars")
+        # print(f"PDF context: {len(result['context2'])} chars")
+        # print(f"Tags context: {len(result['context3'])} chars")
+        # print("========================\n")
+        
+        return result
     
     model = ChatAnthropic(api_key=api_key, model_name=model_name)
     

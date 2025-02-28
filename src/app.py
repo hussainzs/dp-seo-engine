@@ -100,8 +100,11 @@ def main():
     # Define chat function
     def chat(input_text, dept, title, content, chat_history):
         chat_history = chat_history or []
-        prompt_text = f""" I am a student journalist who writes for this department: {dept} so use the writing guide that is meant for: {dept}.
-        The title of the article that I'm thinking of is: {title}, the content of the article is: {content}. My question is: {input_text}"""
+        if dept or title or content:
+            prompt_text = f""" I am a student journalist who writes for this department: {dept} so use the writing guide that is meant for: {dept}.
+            The title of the article that I'm thinking of is: {title}, the content of the article is: {content}. My question is: {input_text}"""
+        else:
+            prompt_text = f""" My question is: {input_text}"""
         
         # Get response from chain
         response = chain.invoke(
