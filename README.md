@@ -1,5 +1,7 @@
 # DP SEO Engine
 
+Deployed at: https://dp-seo-engine.onrender.com/
+
 **RAG-based SEO Optimizer** that leverages internal style guides and SEO optimization rules to generate URL slugs, tags, and other functionalities for articles written by the Daily Pennsylvania Inc.
 
 This project uses **Retrieval-Augmented Generation (RAG)** with **LLMs** to provide SEO guidance to the editorial team by combining internal style guides with advanced SEO techniques. The system takes in PDFs, CSV data, and external web documents, processes them, and offers suggestions for optimizing SEO performance.
