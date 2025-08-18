@@ -1,6 +1,6 @@
 # DP SEO Engine
 
-Deployed at: https://dp-seo-engine.onrender.com/
+Deployed at: _deployment support ended_
 
 **RAG-based SEO Optimizer** that leverages internal style guides and SEO optimization rules to generate URL slugs, tags, and other functionalities for articles written by the Daily Pennsylvania Inc.
 
